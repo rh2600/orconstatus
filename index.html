@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <title>Orcon Status</title>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.jfeed.pack.js"></script>
+
+<script type="text/javascript">
+
+jQuery(function() {
+
+    jQuery.getFeed({
+        url: 'http://www.orcon.net.nz/support/network_status_rss',
+        success: function(feed) {
+        
+            jQuery('#result').append('<h2>'
+            + '<a href="'
+            + feed.link
+            + '">'
+            + feed.title
+            + '</a>'
+            + '</h2>');
+            
+            var html = '';
+            
+            for(var i = 0; i < feed.items.length && i < 5; i++) {
+            
+                var item = feed.items[i];
+                
+                html += '<h3>'
+                + '<a href="'
+                + item.link
+                + '">'
+                + item.title
+                + '</a>'
+                + '</h3>';
+                
+                html += '<div class="updated">'
+                + item.updated
+                + '</div>';
+                
+                html += '<div>'
+                + item.description
+                + '</div>';
+            }
+            
+            jQuery('#result').append(html);
+        }    
+    });
+});
+
+</script>
+    </head>
+    <body>
+    <div id="result" />
+    </body>
+</html>
