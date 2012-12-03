@@ -10,6 +10,14 @@
 
 <script type="text/javascript">
 
+document.addEventListener('deviceready', onDeviceReady, false); 
+
+/* When this function is called, Cordova has been initialized and is ready to roll */ 
+function onDeviceReady() { 
+//hide the splash screen. 
+navigator.splashscreen.hide(); 
+} 
+
 jQuery(function() {
 
     jQuery.getFeed({
